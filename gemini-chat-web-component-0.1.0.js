@@ -100,7 +100,7 @@ class GeminiChat extends HTMLElement {
     });
 
     try {
-      const loadingPara = this.addMessage('AI', '생각 중...');
+      const loadingPara = this.addMessage('Gemini', '생각 중...');
 
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${this.modelName}:generateContent`, {
         method: 'POST',
@@ -130,7 +130,7 @@ class GeminiChat extends HTMLElement {
           parts: [{ text: aiResponse }]
       });
 
-      loadingPara.textContent = `🤖 AI: ${aiResponse}`;
+      loadingPara.textContent = `Gemini: ${aiResponse}`;
 
     } catch (error) {
       console.error('오류 발생:', error);
@@ -140,7 +140,7 @@ class GeminiChat extends HTMLElement {
 
   addMessage(sender, text) {
     const p = document.createElement('p');
-    p.textContent = `${sender === 'You' ? 'You' : sender === 'AI' ? this.modelName : '❗️ Error'}: ${text}`;
+    p.textContent = `${sender === 'You' ? 'You' : sender === 'Gemini' ? this.modelName : '❗️ Error'}: ${text}`;
     this.chatContainer.appendChild(p);
     this.chatContainer.scrollTop = this.chatContainer.scrollHeight;
     return p;
